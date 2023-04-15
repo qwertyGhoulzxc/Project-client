@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Block = styled.div`
   margin-top: 20px;
+  position: relative;
 
-background: rgba(255, 255, 255, 0.13);
-
+//background: rgba(255, 255, 255, 0.13);
+background: ${props => props.theme.backgrounds.greyBack};
 .content{
   margin: auto;
   width:800px;
@@ -68,6 +69,7 @@ width: 150px;
   }
   .compare{
     display: flex;
+    align-items: center;
   }
   
 `

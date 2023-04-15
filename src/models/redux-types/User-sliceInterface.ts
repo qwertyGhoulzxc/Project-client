@@ -7,6 +7,12 @@ export interface UserSliceInterface{
     RegistrError:IError
     ChangePassError:IError
     SendLinkError:IError
-
+    ChangeUsername:IError
+    ChangeName:IError
+    ChangeDescription:IError
+    ChangeProfile:{
+        img:boolean
+    }
+    lastErrorName:string;
 
 }

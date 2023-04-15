@@ -29,6 +29,22 @@ const initialState:UserSliceInterface = {
         status:202,
         message:''
     },
+    ChangeUsername:{
+        status:202,
+        message:''
+    },
+    ChangeName:{
+        status:202,
+        message:''
+    },
+    ChangeDescription:{
+        status:202,
+        message:''
+    },
+    ChangeProfile:{
+        img:false
+    },
+    lastErrorName:''
 
 }
 
@@ -42,6 +58,13 @@ initialState,
         setErrorStatusRegistr:(state, action)=>{state.RegistrError.status=action.payload.status;state.RegistrError.message=action.payload.message},
         setErrorStatusChangePass:(state, action)=>{state.ChangePassError.status=action.payload.status;state.ChangePassError.message=action.payload.message},
         setErrorStatusSendLink:(state, action)=>{state.SendLinkError.status=action.payload.status;state.SendLinkError.message=action.payload.message},
+        setErrorStatusChangeUsername:(state, action)=>{state.ChangeUsername.status=action.payload.status;state.ChangeUsername.message=action.payload.message},
+        setErrorStatusChangeName:(state, action)=>{state.ChangeName.status=action.payload.status;state.ChangeName.message=action.payload.message},
+        setErrorStatusChangeDescription:(state, action)=>{state.ChangeDescription.status=action.payload.status;state.ChangeDescription.message=action.payload.message},
+        setChangeProfileAvatar:(state, action)=>{state.ChangeProfile.img = action.payload},
+        setLastErrorChangeUsername:(state, action)=>{state.lastErrorName=action.payload}
+
+
     }
 })
 

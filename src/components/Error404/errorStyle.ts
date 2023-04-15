@@ -24,6 +24,7 @@ display: flex;
       text-decoration: none;
     }
     button {
+      cursor:pointer;
       margin-top: 30px;
       display: flex;
       align-items: center;

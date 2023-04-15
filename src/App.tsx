@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom";
 import Registration from "./components/enterParams/registration/Registration";
 import Login from "./components/enterParams/login/Login";
@@ -10,24 +10,44 @@ import SendLinkForm from "./components/enterParams/sendLink/SendLink";
 import {Container} from './globalStyles/container'
 import Profile from './components/main/profile/Profile'
 import Cookies from "js-cookie";
+import Loading from "./components/loading/Loading";
+import {LoadingActions} from "./redux/reducers/Loading-slice";
+import ActivateAlert from "./components/unActivatedAccount/ActivateAlert";
 
 
 const App =()=> {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const {setGlobalLoadingStatus} = LoadingActions
     const {isAuth} = useAppSelector(state => state.UserInfoReducer)
     useEffect(()=>{
         if(localStorage.getItem('token')) {
             dispatch(checkAuth())
-            console.log(Cookies.get('username'))
-            dispatch(reloadReduxData(Cookies.get('username')))//!
+            dispatch(reloadReduxData(Cookies.get('id')))//!
         }
-
     },[])
 
+    const {LoadingReducer} = useAppSelector(state=>state)
+    useEffect(()=>{
+        interface MyObject {
+            [key: string]: boolean;
+        }
+        function hasTrueBooleanValue(obj: any): boolean {
+            return Object.values(obj).some((value) => value === true);
+        }
+        dispatch(setGlobalLoadingStatus(hasTrueBooleanValue(LoadingReducer.loadingStatus)))
+    }, [LoadingReducer.loadingStatus])
+
+  if(LoadingReducer.LoadingStatus){
+      return(
+          <Loading/>
+      )
+  }
    if(!isAuth){
        return (
+
            <Container>
+
            <Routes>
 
                <Route path={'/reg'} element={<Registration/>}/>
@@ -40,16 +60,19 @@ const App =()=> {
        )
    }
 
+
+
+
   return (
     <div className="App">
         <Container>
+
       <Routes>
           <Route path={'/'} element={<Profile/>}/>
 
           <Route path={'/*'} element={<Error404/>}/>
       </Routes>
-        <h1>{isAuth?'вы авторизованы':'авторизуйтесь'}</h1>
-        <button onClick={()=>{navigate('/test')}}>dsadsad</button>
+            <ActivateAlert/>
         </Container>
     </div>
   );

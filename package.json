@@ -12,6 +12,7 @@
     "@types/node": "^16.18.23",
     "@types/react-redux": "^7.1.25",
     "@types/styled-components": "^5.1.26",
+    "@uiball/loaders": "^1.2.6",
     "axios": "^1.3.4",
     "js-cookie": "^3.0.1",
     "react": "^18.2.0",
